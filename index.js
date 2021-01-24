@@ -101,14 +101,14 @@ for(const subject of learningData) {  //insert to the array total learning time 
             let cellText
             if( i === 0 || i === 1){
                 cellText = document.createTextNode((obj[orderTopics[i]]).toLocaleTimeString());
-            } else {
+            } else if(i === 5){
+                cellText = document.createTextNode(obj[orderTopics[i]] + "%");
+                cell.className = taskFinishedPrecentColor(obj[orderTopics[i]]);
+            } else{
                 cellText = document.createTextNode(obj[orderTopics[i]]);
             }
             if( i === 2){
                 cell.className = totalTimeColor(obj[orderTopics[i]]);
-            }
-            if(i === 5){
-                cell.className = taskFinishedPrecentColor(obj[orderTopics[i]]);
             }
             cell.appendChild(cellText);
             row.appendChild(cell);
