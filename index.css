@@ -1,4 +1,4 @@
-.table{
+table{
     background: rgb(126, 117, 118);
     height: 80vh;
     width: 100%;
@@ -7,6 +7,7 @@
     text-align: center;
     margin: 3px;
 }
+
 tr{
     width: 100%;
     background: gray;

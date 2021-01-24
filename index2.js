@@ -77,70 +77,31 @@ for(const subject of learningData) {  //insert to the array total learning time 
     subject.totalTime = (subject.finishedAt - subject.startedAt) / 3600000; 
     subject.tasksFinishedPercent = Math.floor(100*subject.tasksFinished/subject.tasksGiven);
 }
+console.log(learningData[0].totalTime);
 
  let myTable = document.createElement("table");
+ let firstRow = document.createElement("tr");
  let titlesArr = ["Started At", "Finished At", "Total Time","Tasks Given", "Tasks Finished", "Tasks Finished Percent", "Topic"];
- 
- function creatFirstRow(){
-    let firstRow = document.createElement("tr");
-    myTable.appendChild(firstRow);
-    for(let x = 0; x < titlesArr.length; x++){
-       let cell = document.createElement("th");  
-       cell.innerText = titlesArr[x];
-       firstRow.appendChild(cell);
-    }
+ myTable.appendChild(firstRow);
+ for(let x = 0; x < titlesArr.length; x++){
+    let cell = document.createElement("th");  
+    cell.innerText = titlesArr[x];
+    firstRow.appendChild(cell);
  }
  
- const orderTopics = ["startedAt", "finishedAt", "totalTime", "tasksGiven", "tasksFinished", "tasksFinishedPercent", "topic"];
- 
- function creatTableRows(){
-    for(let obj of learningData){
-        let row = document.createElement("tr");
-        for(let i = 0; i < 7; i++){
-            let cell = document.createElement("td");
-            let cellText
-            if( i === 0 || i === 1){
-                cellText = document.createTextNode((obj[orderTopics[i]]).toLocaleTimeString());
-            } else {
-                cellText = document.createTextNode(obj[orderTopics[i]]);
-            }
-            if( i === 2){
-                cell.className = totalTimeColor(obj[orderTopics[i]]);
-            }
-            if(i === 5){
-                cell.className = taskFinishedPrecentColor(obj[orderTopics[i]]);
-            }
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-        }
-        myTable.append(row);
-    }
+
+ for(let r of learningData ){
+     let row = document.createElement("tr");
+     for(let i = 0; i < 5; i++){
+        let innerCell = document.createElement("td");
+        if(i == 2){
+            innerCell.innerHTML = r.totalTime;
+         } else if(i == 4){
+            innerCell.innerHTML = r.tasksFinishedPercent;
+         } 
+        innerCell.innerHTML = r[i];
+        row.append(innerCell);
+     }
+     myTable.append(row);
  }
- 
- function totalTimeColor(tTime){
-    if(tTime <= 8){
-        return 'tTimeGreen';
-    } else if(tTime <= 15){
-        return 'tTimeOrange';
-    } else{
-        return 'tTimeRed';
-    }
-}
-
-function taskFinishedPrecentColor(tFP){
-    if(tFP <= 50){
-        return 'tasksFinishedPrecentColor1';
-    } else if(tFP <= 75){
-        return 'tasksFinishedPrecentColor2';
-    } else{
-        return 'tasksFinishedPrecentColor3';
-    }
-}
-
-
- creatFirstRow();
- creatTableRows();
  document.body.appendChild(myTable);
-
-
- 
