@@ -1,9 +1,12 @@
+//original to table task - using document.write()
+
 let learningData = [
     {
         startedAt: new Date("2021.01.20 13:00"),
         finishedAt: new Date("2021.01.20 19:00"),
         tasksGiven: 10,
-        tasksFinished: 4,
+        tasksFinished: 4
+        ,
         topic: "JavaScript"
     },
     {
